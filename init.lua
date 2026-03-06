@@ -2,7 +2,7 @@ local S = minetest.get_translator("public_death_messages")
 local NS = function(s) return s end
 
 -- Fall damage
-fall = {
+local fall = {
     NS('@1 hit the ground too hard'),
     NS('@1 jumped off a cliff'),
     NS('@1 forgot about fall damage'),
@@ -10,7 +10,7 @@ fall = {
 }
 
 -- Burning in fire
-burn = {
+local burn = {
     NS('@1 burned to a crisp'),
     NS('@1 got a little too warm'),
     NS('@1 got too close to the camp fire'),
@@ -18,7 +18,7 @@ burn = {
 }
 
 -- Drowning
-drown = {
+local drown = {
     NS('@1 drowned'),
     NS('@1 ran out of air'),
     NS('@1 tried to impersonate an anchor'),
@@ -26,7 +26,7 @@ drown = {
 }
 
 -- Burning in lava
-lava = {
+local lava = {
     NS('@1 thought lava was cool'),
     NS('@1 tried to swim in lava'),
     NS('@1 melted in lava'),
@@ -34,7 +34,7 @@ lava = {
 }
 
 -- Killed by other player
-pvp = {
+local pvp = {
     NS('@1 was slain by @2'),
     NS('@1 was killed by @2'),
     NS('@1 was put to the sword by @2'),
@@ -42,7 +42,7 @@ pvp = {
 }
 
 -- Killed by mob
-mob = {
+local mob = {
     NS('@1 was slain by @2'),
     NS('@1 was killed by @2'),
     NS("@1 got on @2's last nerve"),
@@ -50,7 +50,7 @@ mob = {
 }
 
 -- Everything else
-other = {
+local other = {
     NS('@1 died'),
     NS('@1 gave up on life'),
     NS('@1 passed out - permanantly'),
@@ -58,21 +58,21 @@ other = {
 }
 
 function send_death_message(cause, victim, killer)
-    meta = victim:get_meta()
-    show_death_messages = meta:get_string('show_death_messages')
+    local meta = victim:get_meta()
+    local show_death_messages = meta:get_string('show_death_messages')
 
     if show_death_messages == '' or show_death_messages == 'yes' then
-        death_message = cause[math.random(#cause)]
+        local death_message = cause[math.random(#cause)]
 
         if killer then
-            killer_name = ''
+            local killer_name = ''
             if killer:is_player() then
                 killer_name = killer:get_player_name()
             else
                 -- Get entity name, excluding mod name ("mymod:enemy" -> "enemy")
-                killer_name = killer:get_luaentity().name
-                index, _ = string.find(entity_name, ':')
-                killer_name = string.sub(entity_name, index + 1)
+                local entity_name = killer:get_luaentity().name
+                local index, _ = entity_name:find(':')
+                killer_name = entity_name:sub(index + 1)
             end
             death_message = S(death_message, victim:get_player_name(), killer_name)
         else
@@ -125,8 +125,8 @@ end)
 minetest.register_chatcommand('toggle_death_messages', {
     description = S('Toggles death messages appearing in chat when you die'),
     func = function(name)
-        meta = minetest.get_player_by_name(name):get_meta()
-        show_death_messages = meta:get_string('show_death_messages')
+        local meta = minetest.get_player_by_name(name):get_meta()
+        local show_death_messages = meta:get_string('show_death_messages')
 
         if show_death_messages == '' or show_death_messages == 'yes' then
             -- Turn death messages off
