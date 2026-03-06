@@ -62,7 +62,7 @@ function send_death_message(cause, victim, killer)
     show_death_messages = meta:get_string('show_death_messages')
 
     if show_death_messages == '' or show_death_messages == 'yes' then
-        death_message = cause[math.random(1, #cause)]
+        death_message = cause[math.random(#cause)]
 
         if killer then
             killer_name = ''
@@ -78,7 +78,8 @@ function send_death_message(cause, victim, killer)
         else
             death_message = S(death_message, victim:get_player_name())
         end
-        minetest.chat_send_all(death_message)
+
+        minetest.chat_send_all(minetest.colorize('red', death_message))
     end
 end
 
