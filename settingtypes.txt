@@ -1,0 +1,2 @@
+# Disables message toggling, false by default
+disable_public_death_message_toggling (By default, everyone can toggle their own death messages. Setting this option to true will deny toggling for all players, and messages will always be sent.) bool false
