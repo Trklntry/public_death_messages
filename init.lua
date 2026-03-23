@@ -60,7 +60,7 @@ local other = {
 -- Settings are read from your minetest.conf
 -- UNTOGGLABLE_DEATH_MESSAGES prevents all players from toggling their death messages if set to true,
 -- and death messages will always be sent. The default is false
-UNTOGGLABLE_DEATH_MESSAGES = minetest.settings:get_bool("disable_public_death_message_toggling", false)
+local UNTOGGLABLE_DEATH_MESSAGES = minetest.settings:get_bool("public_death_messages_togglable", false)
 
 function send_death_message(cause, victim, killer)
     local meta = victim:get_meta()
@@ -134,8 +134,7 @@ minetest.register_chatcommand('toggle_death_messages', {
         local show_death_messages = meta:get_string('show_death_messages')
 
         if UNTOGGLABLE_DEATH_MESSAGES == true then
-	    -- Notifies the player that death messages cannot be toggled and are always enabled
-	    minetest.chat_send_player(name, minetest.colorize('orangered', S('Death messages cannot be disabled here, all will be revealed!')))
+	    minetest.chat_send_player(name, minetest.colorize('orangered', S('Your death messages cannot be disabled in this server')))
 
         elseif show_death_messages == '' or show_death_messages == 'yes' then
             -- Turn death messages off

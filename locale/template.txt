@@ -28,4 +28,4 @@
 Toggles death messages appearing in chat when you die=
 You will no longer send death messages=
 You will now send death messages=
-Death messages cannot be disabled here, all will be revealed!=
+Your death messages cannot be disabled in this server=
