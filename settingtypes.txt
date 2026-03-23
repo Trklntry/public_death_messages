@@ -1,4 +1,4 @@
 # By default, everyone can toggle their own death messages.
-# Setting this option to true will deny toggling for all players,
+# Setting this option to false will deny toggling for all players,
 # and messages will always be sent.
-public_death_messages_togglable (Death messages cannot be toggled and are always enabled) bool false
+public_death_messages_togglable (Determines whether death messages can be toggled or not) bool true

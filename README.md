@@ -11,6 +11,6 @@ This mod adds death messages for:
 
 There is also a command: `/toggle_death_messages` that toggles your death messages on and off
 They can be made untoggable and death messages will always sent if `public_death_messages_togglable` is
-set to true in your minetest.conf
+set to `false` in your `minetest.conf`
 
 **License**: GPLv3
