@@ -133,8 +133,8 @@ minetest.register_chatcommand('toggle_death_messages', {
         local meta = minetest.get_player_by_name(name):get_meta()
         local show_death_messages = meta:get_string('show_death_messages')
 
-	if TOGGLEABLE_DEATH_MESSAGES == false then
-	    minetest.chat_send_player(name, minetest.colorize('orangered', S('Death messages cannot be disabled on this server')))
+        if TOGGLEABLE_DEATH_MESSAGES == false then
+            minetest.chat_send_player(name, minetest.colorize('orangered', S('Death messages cannot be disabled on this server')))
 
         elseif show_death_messages == '' or show_death_messages == 'yes' then
             -- Turn death messages off
